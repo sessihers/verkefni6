@@ -21,6 +21,11 @@ main {
 }
 
 /* TODO taka ætti padding af main þegar komið er fyrir ofan hámarksbreidd */
+@media(min-width: 1490px) {
+  main {
+    padding: 0;
+  }
+}
 
 h1 {
   text-align: center;
@@ -41,10 +46,13 @@ h1 {
 }
 
 /* grid fyrir efni, setja þarf upp í html */
+.grid {
+}
 
 .grid__row {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   margin-left: -10px;
   margin-right: -10px;
 }
@@ -56,12 +64,36 @@ h1 {
 }
 
 /* TODO setja upp grid fyrir >= 1000px */
+@media(min-width: 1000px) {
+  .grid__col {
+    width: 50%;
+    margin-bottom: 40px;
+  }
+}
 
 /* TODO koma mynd fyrir á öðrum stað í < 1000px */
-
+@media(max-width: 999px) {
+  .grid__reverse {
+    flex-direction: column-reverse;
+  }
+}
 /* grid fyrir cards */
 
 .cards {
+ }
+
+.cards__grid__row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
+.cards__grid__col {
+  width: 100%;
+  padding-right: 10px;
+  padding-left: 10px;
 }
 
 /* TODO útfæra grid fyrir cards */
@@ -73,5 +105,112 @@ h1 {
 */
 
 /* TODO .card stílar úr v5 (eða sýnilausn...) */
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+  max-width: 470px;
+  max-height: 320px;
+  overflow: auto;
+
+  background-color: #fff;
+  border: 2px solid #aaa;
+  border-radius: 5px;
+}
+
+.card__title {
+  margin-bottom: 20px;
+
+  font-size: 1.5em;
+  line-height: 1;
+  word-break: break-word;
+}
+
+.card__content {
+  display: flex;
+  flex: 1;
+}
+
+.card__text {
+  font-size: 1em;
+  line-height: 1.20;
+  word-break: break-word;
+}
+
+.card__image {
+  padding-right: 20px;
+  flex: 0 0 150px;
+}
+
+.card__img {
+  max-width: 100%;
+}
+
+.card__tags {
+  margin-top: 10px;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  list-style: none;
+}
+
+.card__tag {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.cards--first-flex-item{
+  order: -1;
+}
 
 /* TODO responsive stílar fyrir .card */
+@media(min-width: 700px) {
+  .cards__grid__col {
+    width: 50%;
+    margin-bottom: 40px;
+  }
+}
+
+@media(min-width: 1000px) {
+  .cards__grid__col {
+    width: calc(100%/3);
+  }
+}
+
+@media(max-width: 699px) {
+  .card {
+    max-height: none;
+    max-width: none;
+    border: none;
+    border-bottom: 2px solid #aaa;
+    padding: 0;
+  }
+
+  .cards__grid__col {
+    margin-bottom: 20px;
+  }
+
+  .card__image {
+    width: 100%;
+  }
+
+  .card__content {
+    flex-direction: column;
+  }
+
+  .card__text {
+    margin-bottom: 20px;
+  }
+}
